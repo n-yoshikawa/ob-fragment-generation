@@ -3,6 +3,7 @@
 #include <openbabel/obconversion.h>
 #include <openbabel/obiter.h>
 #include <openbabel/query.h>
+#include <openbabel/math/align.h>
 
 #include <cassert>
 #include <cmath>
@@ -18,16 +19,13 @@ using namespace OpenBabel;
 int main(int argc, char **argv) {
   OBConversion conv;
   //conv.SetOptions("O", conv.OUTOPTIONS);
-  conv.SetInFormat("SDF");
-  conv.SetOutFormat("SMI");
+  conv.SetInFormat("sdf");
+  conv.SetOutFormat("inchikey");
 
   OBFormat *inFormat;
   if(argc != 3) {
     cerr << argv[0] << "<original SDF>" << "<predicted SDF>" << endl;
   }
-
-  int totalNum = 0;
-  int wrongNum = 0;
 
   ifstream ifs1, ifs2;
   ifs1.open(argv[1]);
@@ -39,25 +37,28 @@ int main(int argc, char **argv) {
     // mol2: predicted molecule
     OBMol mol1, mol2;
 
+    stringstream ss1, ss2;
+    string key1, key2;
+
     conv.Read(&mol1, &ifs1);
     conv.Read(&mol2, &ifs2);
-    
-    stringstream ss1, ss2;
-    string smiles1, smiles2;
 
-    // Make sure canonical SMILES of two molecules are the same
+    // Make sure InChIKey of two molecules are the same
     conv.Write(&mol1, &ss1);
     conv.Write(&mol2, &ss2);
 
-    ss1 >> smiles1;
-    ss2 >> smiles2;
+    ss1 >> key1;
+    ss2 >> key2;
 
-    totalNum++;
-    if(smiles1 != smiles2) {
-      wrongNum++;
+    if(key1 != key2) {
+      cout << key1 << "," << key2 << ",0,0,0" << endl;
       continue;
     }
 
+    // Calculate RMSD
+    OBAlign aln(mol1, mol2);
+    aln.Align();
+    double rmsd = aln.GetRMSD();
 
     // Get mapping between two molecules
     OBQuery *query = CompileMoleculeQuery(&mol1);
@@ -83,7 +84,11 @@ int main(int argc, char **argv) {
       }
       if(isCorrect) break;
     }
-    assert(!idxMapping.empty());
+    if(idxMapping.empty()) {
+      cout << key1 << "," << key2 << "," << rmsd << ",null,null" << endl;
+      continue;
+    }
+
 
     // Display the length of each bond
     double bondError = 0;
@@ -103,8 +108,10 @@ int main(int argc, char **argv) {
           break;
         }
       }
-      assert(isFound);
-
+      if(!isFound) {
+        cout << key1 << "," << key2 << "," << rmsd << ",null,null" << endl;
+        continue;
+      }
     }
     bondError /= bondNum; 
 
@@ -140,8 +147,6 @@ int main(int argc, char **argv) {
     }
     angleError /= angleNum;
 
-    cout << smiles1 << "," << setprecision(10) << bondError << "," << angleError << endl;
+    cout << key1 << "," << key2 << "," << rmsd << "," << setprecision(10) << bondError << "," << angleError << endl;
   }
-
-  cout << "total: " << totalNum << "," << "wrong:" << wrongNum << endl;
 }
