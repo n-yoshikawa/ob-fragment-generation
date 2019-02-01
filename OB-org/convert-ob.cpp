@@ -41,6 +41,7 @@ int main(int argc, char **argv) {
         if (!pFF || !pFF->Setup(mol)) continue; // can't use either MMFF94 or UFF
       }
 
+      /*
       // Since we only want a rough geometry, use distance cutoffs for VDW, Electrostatics
       pFF->EnableCutOff(true);
       pFF->SetVDWCutOff(10.0);
@@ -56,6 +57,7 @@ int main(int argc, char **argv) {
       // Final cleanup and copy the new coordinates back
       pFF->ConjugateGradients(iterations, 1.0e-6);
       pFF->UpdateCoordinates(mol);
+      */
 
       conv.Write(&mol, &cout);
     }
