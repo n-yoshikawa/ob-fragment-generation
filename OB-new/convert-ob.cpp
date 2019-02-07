@@ -41,24 +41,32 @@ int main(int argc, char **argv) {
         if (!pFF || !pFF->Setup(mol)) continue; // can't use either MMFF94 or UFF
       }
 
-      /*
       // Since we only want a rough geometry, use distance cutoffs for VDW, Electrostatics
       pFF->EnableCutOff(true);
       pFF->SetVDWCutOff(10.0);
       pFF->SetElectrostaticCutOff(20.0);
       pFF->SetUpdateFrequency(10); // update non-bonded distances infrequently
 
+      /*
+      // obabel (fast)
       // How many cleanup cycles?
-      int iterations = 25;
+      int iterations = 100;
       // Initial cleanup for every level
-      //pFF->ConjugateGradients(iterations, 1.0e-4);
+      pFF->ConjugateGradients(iterations, 1.0e-4);
+      */
+
+      /* 
+      // obabel (med)
+      // How many cleanup cycles?
+      int iterations = 100;
+      // Initial cleanup for every level
+      pFF->ConjugateGradients(iterations, 1.0e-4);
       // permute central rotors
       pFF->FastRotorSearch(false);
       // Final cleanup and copy the new coordinates back
       pFF->ConjugateGradients(iterations, 1.0e-6);
       pFF->UpdateCoordinates(mol);
       */
-
       conv.Write(&mol, &cout);
     }
   }
