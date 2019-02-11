@@ -47,16 +47,15 @@ int main(int argc, char **argv) {
       pFF->SetElectrostaticCutOff(20.0);
       pFF->SetUpdateFrequency(10); // update non-bonded distances infrequently
 
-      /*
       // obabel (fast)
       // How many cleanup cycles?
       int iterations = 100;
       // Initial cleanup for every level
       pFF->ConjugateGradients(iterations, 1.0e-4);
-      */
+      pFF->UpdateCoordinates(mol);
 
-      /* 
       // obabel (med)
+      /*
       // How many cleanup cycles?
       int iterations = 100;
       // Initial cleanup for every level
@@ -67,6 +66,7 @@ int main(int argc, char **argv) {
       pFF->ConjugateGradients(iterations, 1.0e-6);
       pFF->UpdateCoordinates(mol);
       */
+
       conv.Write(&mol, &cout);
     }
   }
