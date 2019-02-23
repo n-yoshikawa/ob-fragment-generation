@@ -15,7 +15,6 @@ isDebug = False
 refFileName = '../data/platinum_dataset_2017_01.sdf'
 predFileName = sys.argv[1]
 
-
 # Calculate RMSD with RDKit
 refSpl = Chem.SDMolSupplier(refFileName)
 predSpl = Chem.SDMolSupplier(predFileName)
@@ -23,14 +22,12 @@ predSpl = Chem.SDMolSupplier(predFileName)
 entry2RMSD = {}
 for ref, pred in zip(refSpl, predSpl):
     refEntry = ref.GetProp('_Name')
-    predEntry = pred.GetProp('_Name')
-    assert(refEntry == predEntry)
-    refKey = Chem.inchi.MolToInchiKey(ref)
-    if pred is None:
-        predKey = ""
-    else:
-        predKey = Chem.inchi.MolToInchiKey(pred)
-    rmsd = AllChem.GetBestRMS(ref, pred)
+    #predEntry = pred.GetProp('_Name')
+    #assert(refEntry == predEntry)
+    try:
+        rmsd = AllChem.GetBestRMS(ref, pred)
+    except:
+        rmsd = ''
     entry2RMSD[refEntry] = rmsd
 
 # See https://baoilleach.blogspot.com/2010/11/automorphisms-isomorphisms-symmetry.html
@@ -41,8 +38,8 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
     predMol = pred.OBMol
 
     refEntry = refMol.GetTitle()
-    predEntry = predMol.GetTitle()
-    assert(refEntry == predEntry)
+    #predEntry = predMol.GetTitle()
+    #assert(refEntry == predEntry)
 
     refSMILES = ref.write("can").split()[0]
 
@@ -50,7 +47,7 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
     refKey = ref.write("inchikey").rstrip()
     predKey = pred.write("inchikey").rstrip()
     if refKey != predKey:  # Wrong stereochemistry
-        print("{},{},null,null,null,null,F".format(refEntry, refSMILES))
+        print("{},{},,,,,F".format(refEntry, refSMILES))
         continue
 
     # Get isomorphism between two molecules
@@ -73,7 +70,7 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
             break
     # No correct isomorphism is found
     if isCorrectMap is False:
-        print("{},{},{},null,null,null,T".format(
+        print("{},{},{},,,,T".format(
             refEntry, refSMILES, entry2RMSD[refEntry]))
         continue
 
@@ -122,7 +119,8 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
             refTorsion[0], refTorsion[1], refTorsion[2], refTorsion[3])
         predTorsionAngleDeg = predMol.GetTorsion(
             predTorsion[0], predTorsion[1], predTorsion[2], predTorsion[3])
-        torsionErrors.append(abs(refTorsionAngleDeg - predTorsionAngleDeg))
+        angleError = abs(refTorsionAngleDeg - predTorsionAngleDeg)
+        torsionErrors.append(min(angleError, 360.0-angleError))
         if isDebug:
             print([etab.GetSymbol(refMol.GetAtom(i).GetAtomicNum()) for i in refTorsion],
                   refTorsionAngleDeg)
