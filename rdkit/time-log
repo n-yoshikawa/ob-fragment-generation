@@ -1,24 +1,24 @@
-[07:46:26] UFFTYPER: Unrecognized charge state for atom: 14
-[07:47:07] UFFTYPER: Unrecognized charge state for atom: 12
-[07:48:21] UFFTYPER: Unrecognized charge state for atom: 21
-[07:48:21] UFFTYPER: Unrecognized charge state for atom: 22
-[07:48:30] UFFTYPER: Unrecognized charge state for atom: 13
-[07:48:32] UFFTYPER: Unrecognized charge state for atom: 13
-[07:48:53] UFFTYPER: Unrecognized charge state for atom: 13
-[07:49:10] UFFTYPER: Unrecognized charge state for atom: 6
-[07:49:17] UFFTYPER: Unrecognized charge state for atom: 13
-[07:49:20] UFFTYPER: Unrecognized charge state for atom: 0
-[07:49:36] UFFTYPER: Unrecognized charge state for atom: 31
-[07:49:36] UFFTYPER: Unrecognized charge state for atom: 32
-[07:49:36] UFFTYPER: Unrecognized charge state for atom: 32
-[07:49:46] UFFTYPER: Unrecognized charge state for atom: 13
-[07:49:56] UFFTYPER: Unrecognized charge state for atom: 17
-[07:50:01] UFFTYPER: Unrecognized charge state for atom: 21
-[07:50:19] UFFTYPER: Unrecognized charge state for atom: 4
-[07:50:20] UFFTYPER: Unrecognized charge state for atom: 7
-[07:50:38] UFFTYPER: Unrecognized charge state for atom: 13
-[07:50:43] UFFTYPER: Unrecognized charge state for atom: 19
+[06:16:56] UFFTYPER: Unrecognized charge state for atom: 14
+[06:17:36] UFFTYPER: Unrecognized charge state for atom: 12
+[06:18:48] UFFTYPER: Unrecognized charge state for atom: 21
+[06:18:48] UFFTYPER: Unrecognized charge state for atom: 22
+[06:18:55] UFFTYPER: Unrecognized charge state for atom: 13
+[06:18:57] UFFTYPER: Unrecognized charge state for atom: 13
+[06:19:15] UFFTYPER: Unrecognized charge state for atom: 13
+[06:19:32] UFFTYPER: Unrecognized charge state for atom: 6
+[06:19:39] UFFTYPER: Unrecognized charge state for atom: 13
+[06:19:41] UFFTYPER: Unrecognized charge state for atom: 0
+[06:19:57] UFFTYPER: Unrecognized charge state for atom: 31
+[06:19:57] UFFTYPER: Unrecognized charge state for atom: 32
+[06:19:57] UFFTYPER: Unrecognized charge state for atom: 32
+[06:20:06] UFFTYPER: Unrecognized charge state for atom: 13
+[06:20:16] UFFTYPER: Unrecognized charge state for atom: 17
+[06:20:20] UFFTYPER: Unrecognized charge state for atom: 21
+[06:20:37] UFFTYPER: Unrecognized charge state for atom: 4
+[06:20:39] UFFTYPER: Unrecognized charge state for atom: 7
+[06:20:55] UFFTYPER: Unrecognized charge state for atom: 13
+[06:21:01] UFFTYPER: Unrecognized charge state for atom: 19
 
-real	4m46.996s
-user	4m46.802s
-sys	0m0.120s
+real	4m34.598s
+user	4m34.354s
+sys	0m0.116s
