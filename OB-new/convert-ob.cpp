@@ -1,9 +1,9 @@
 #include <iostream>
 
-#include <openbabel/mol.h>
-#include <openbabel/obconversion.h>
 #include <openbabel/builder.h>
 #include <openbabel/forcefield.h>
+#include <openbabel/mol.h>
+#include <openbabel/obconversion.h>
 
 using namespace std;
 using namespace OpenBabel;
@@ -15,10 +15,9 @@ int main(int argc, char **argv) {
   OBConversion conv;
   conv.SetOutFormat("SDF");
 
-  for (int i=1; i < argc; i++) {
+  for (int i = 1; i < argc; i++) {
     OBFormat *inFormat = conv.FormatFromExt(argv[i]);
-    if(inFormat==NULL || !conv.SetInFormat(inFormat))
-    {
+    if (inFormat == NULL || !conv.SetInFormat(inFormat)) {
       cerr << " Cannot read file format for " << argv[i] << endl;
       continue; // try next file
     }
@@ -27,34 +26,37 @@ int main(int argc, char **argv) {
       cerr << "Cannot read input file: " << argv[i] << endl;
       continue;
     }
-    while(ifs.peek() != EOF && ifs.good()) {
+    while (ifs.peek() != EOF && ifs.good()) {
       conv.Read(&mol, &ifs);
       builder.Build(mol);
       mol.AddHydrogens();
 
       // Cleanup by MMFF
-      OBForceField* pFF = OBForceField::FindForceField("MMFF94");
-      if (!pFF)
-        continue;
+      OBForceField *pFF = OBForceField::FindForceField("MMFF94");
+      if (!pFF) continue;
       if (!pFF->Setup(mol)) {
         pFF = OBForceField::FindForceField("UFF");
-        if (!pFF || !pFF->Setup(mol)) continue; // can't use either MMFF94 or UFF
+        if (!pFF || !pFF->Setup(mol))
+          continue; // can't use either MMFF94 or UFF
       }
 
-      // Since we only want a rough geometry, use distance cutoffs for VDW, Electrostatics
+      // Since we only want a rough geometry, use distance cutoffs for VDW,
+      // Electrostatics
       pFF->EnableCutOff(true);
       pFF->SetVDWCutOff(10.0);
       pFF->SetElectrostaticCutOff(20.0);
       pFF->SetUpdateFrequency(10); // update non-bonded distances infrequently
 
-      // obabel (fast)
+      // uncomment here for evaluating fast MMFF
+      /*
       // How many cleanup cycles?
       int iterations = 100;
       // Initial cleanup for every level
       pFF->ConjugateGradients(iterations, 1.0e-4);
       pFF->UpdateCoordinates(mol);
+      */
 
-      // obabel (med)
+      // uncomment here for evaluating medium MMFF
       /*
       // How many cleanup cycles?
       int iterations = 100;

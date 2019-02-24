@@ -1,15 +1,16 @@
 # evaluation
-## Usage
+This directory includes evaluation scripts and results
+
+## Contents
+- `evaluation.py`: Evaluation script. 
+- `eval-*.csv`: Result of evaluation for SDFs
+- `stat-result.py`: Script for getting statistics of results
+
+You can run evaluation.py like this:
 ```
 python evaluation.py <Prediction SDF Name>
 ```
-
 RDKit and Python binding of Open Babel are required.
-
-## Files
-- `evaluation.py`: evaluation code
-- `eval-*.csv`: result of evaluation for each result
-- `stat-result.py`: show statistics of result
 
 ## Results
 ### This work
