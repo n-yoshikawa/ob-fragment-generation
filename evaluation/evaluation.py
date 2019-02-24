@@ -22,8 +22,8 @@ predSpl = Chem.SDMolSupplier(predFileName)
 entry2RMSD = {}
 for ref, pred in zip(refSpl, predSpl):
     refEntry = ref.GetProp('_Name')
-    #predEntry = pred.GetProp('_Name')
-    #assert(refEntry == predEntry)
+    predEntry = pred.GetProp('_Name')
+    assert(refEntry == predEntry)
     try:
         rmsd = AllChem.GetBestRMS(ref, pred)
     except:
@@ -38,8 +38,8 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
     predMol = pred.OBMol
 
     refEntry = refMol.GetTitle()
-    #predEntry = predMol.GetTitle()
-    #assert(refEntry == predEntry)
+    predEntry = predMol.GetTitle()
+    assert(refEntry == predEntry)
 
     refSMILES = ref.write("can").split()[0]
 
