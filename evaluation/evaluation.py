@@ -22,11 +22,14 @@ predSpl = Chem.SDMolSupplier(predFileName)
 entry2RMSD = {}
 for ref, pred in zip(refSpl, predSpl):
     refEntry = ref.GetProp('_Name')
-    predEntry = pred.GetProp('_Name')
-    assert(refEntry == predEntry)
-    try:
-        rmsd = AllChem.GetBestRMS(ref, pred)
-    except:
+    if pred is not None:  # in case of failure
+        predEntry = pred.GetProp('_Name')
+        assert(refEntry == predEntry)
+        try:
+            rmsd = AllChem.GetBestRMS(ref, pred)
+        except:
+            rmsd = ''
+    else:
         rmsd = ''
     entry2RMSD[refEntry] = rmsd
 
@@ -83,7 +86,7 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
         predEndIdx = idxMap[refEndIdx - 1] + 1
         predBond = predMol.GetBond(predBeginIdx, predEndIdx)
         bondLenErrors.append(
-            abs(refBond.GetLength()-predBond.GetLength())/refBond.GetLength())
+            abs(refBond.GetLength()-predBond.GetLength()))
         if isDebug:
             print(etab.GetSymbol(refMol.GetAtom(refBeginIdx).GetAtomicNum()),
                   etab.GetSymbol(refMol.GetAtom(refEndIdx).GetAtomicNum()),
@@ -130,6 +133,6 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
 
     print("{},{},{},{},{},{},T".format(refEntry, refSMILES,
                                        entry2RMSD[refEntry],
-                                       np.mean(bondLenErrors)*100.0,
+                                       np.mean(bondLenErrors),
                                        np.mean(bondAngleErrors),
                                        np.mean(torsionErrors)))
