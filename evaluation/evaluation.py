@@ -2,12 +2,13 @@ import sys
 
 import numpy as np
 
+from rdkit import Chem, RDConfig
+from rdkit.Chem import AllChem, TorsionFingerprints
+
 import pybel
 ob = pybel.ob
 etab = ob.OBElementTable()
 
-from rdkit import Chem, RDConfig
-from rdkit.Chem import AllChem, TorsionFingerprints
 
 isDebug = False
 
@@ -19,21 +20,32 @@ refSpl = Chem.SDMolSupplier(refFileName)
 predSpl = Chem.SDMolSupplier(predFileName)
 
 entry2RMSD = {}
+entry2TFD = {}
 for ref, pred in zip(refSpl, predSpl):
     refEntry = ref.GetProp('_Name')
-    if pred is not None:  # in case of failure
-        predEntry = pred.GetProp('_Name')
-        assert(refEntry == predEntry)
-        try:
-            rmsd = AllChem.GetBestRMS(ref, pred)
-        except:
-            rmsd = ''
-    else:
+    if pred is None:  # in case of failure
+        entry2RMSD[refEntry] = ''
+        entry2TFD[refEntry] = ''
+        continue
+
+    predEntry = pred.GetProp('_Name')
+    assert(refEntry == predEntry)
+    try:
+        rmsd = AllChem.GetBestRMS(ref, pred)
+    except:
         rmsd = ''
+    try:
+        m = Chem.MolFromSmiles(Chem.MolToSmiles(ref))
+        ref = AllChem.AssignBondOrdersFromTemplate(m, ref)
+        pred = AllChem.AssignBondOrdersFromTemplate(m, pred)
+        tfd = TorsionFingerprints.GetTFDBetweenMolecules(ref, pred)
+    except:
+        tfd = ''
     entry2RMSD[refEntry] = rmsd
+    entry2TFD[refEntry] = tfd
 
 # See https://baoilleach.blogspot.com/2010/11/automorphisms-isomorphisms-symmetry.html
-print("Entry,SMILES,RMSD,Bond error,Angle error,Torsion error,Stereo correct")
+print("Entry,SMILES,RMSD,Bond error,Angle error,Torsion error,TFD,Stereo correct")
 for ref, pred in zip(pybel.readfile("sdf", refFileName),
                      pybel.readfile("sdf", predFileName)):
     refMol = ref.OBMol
@@ -48,7 +60,7 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
     refKey = ref.write("inchikey").rstrip()
     predKey = pred.write("inchikey").rstrip()
     if refKey != predKey:  # Wrong stereochemistry
-        print("{},{},,,,,F".format(refEntry, refSMILES))
+        print("{},{},,,,,,F".format(refEntry, refSMILES))
         continue
 
     # Get mapping of two molecules using canonical SMILES order
@@ -128,8 +140,9 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
                   predTorsionAngleDeg)
             print()
 
-    print("{},{},{},{},{},{},T".format(refEntry, refSMILES,
+    print("{},{},{},{},{},{},{},T".format(refEntry, refSMILES,
                                        entry2RMSD[refEntry],
                                        np.mean(bondLenErrors),
                                        np.mean(bondAngleErrors),
-                                       np.mean(torsionErrors)))
+                                       np.mean(torsionErrors),
+                                       entry2TFD[refEntry]))
