@@ -6,9 +6,8 @@ import pybel
 ob = pybel.ob
 etab = ob.OBElementTable()
 
-from rdkit import Chem
-from rdkit.Chem import Draw
-from rdkit.Chem import AllChem
+from rdkit import Chem, RDConfig
+from rdkit.Chem import AllChem, TorsionFingerprints
 
 isDebug = False
 
@@ -42,10 +41,9 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
 
     refEntry = refMol.GetTitle()
     predEntry = predMol.GetTitle()
-    assert(refEntry == predEntry)
+    assert refEntry == predEntry
 
     refSMILES = ref.write("can").split()[0]
-
     # Check stereochemistry
     refKey = ref.write("inchikey").rstrip()
     predKey = pred.write("inchikey").rstrip()
@@ -53,37 +51,36 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
         print("{},{},,,,,F".format(refEntry, refSMILES))
         continue
 
-    # Get isomorphism between two molecules
-    query = ob.CompileMoleculeQuery(refMol)
-    mapper = ob.OBIsomorphismMapper.GetInstance(query)
-    isomorphs = ob.vvpairUIntUInt()
-    # Check validity (OB issue #1929)
-    mapper.MapAll(pred.OBMol, isomorphs)
-    for isomorph in isomorphs:
-        idxMap = dict(isomorph)
-        isCorrectMap = True
-        for refAtom in ob.OBMolAtomIter(refMol):
-            refIdx = refAtom.GetIdx()
-            # obmol indices are 1-indexed while the mapper is zero indexed
-            predIdx = idxMap[refIdx - 1] + 1
-            if refAtom.GetAtomicNum() != predMol.GetAtom(predIdx).GetAtomicNum():
-                isCorrectMap = False
-                break
-        if isCorrectMap is True:
-            break
-    # No correct isomorphism is found
-    if isCorrectMap is False:
-        print("{},{},{},,,,T".format(
-            refEntry, refSMILES, entry2RMSD[refEntry]))
-        continue
+    # Get mapping of two molecules using canonical SMILES order
+    # https://github.com/openbabel/openbabel/pull/1712
+    gs = ob.OBGraphSym(refMol)
+    symmetry = ob.vectorUnsignedInt()
+    gs.GetSymmetry(symmetry)
+    canonical_labels = ob.vectorUnsignedInt()
+    ob.CanonicalLabels(refMol, symmetry, canonical_labels)
+    refOrder = list(canonical_labels)
+    gs = ob.OBGraphSym(predMol)
+    symmetry = ob.vectorUnsignedInt()
+    gs.GetSymmetry(symmetry)
+    canonical_labels = ob.vectorUnsignedInt()
+    ob.CanonicalLabels(predMol, symmetry, canonical_labels)
+    predOrder = list(canonical_labels)
+    predOrderInv = {order: idx for idx, order in enumerate(predOrder)}
+    idxMap = {idx+1: predOrderInv[order] + 1
+              for idx, order in enumerate(refOrder)}
+
+    for refAtom in ob.OBMolAtomIter(refMol):
+        refIdx = refAtom.GetIdx()
+        predIdx = idxMap[refIdx]
+        assert refAtom.GetAtomicNum() == predMol.GetAtom(predIdx).GetAtomicNum()
 
     # Calculate bond length error
     bondLenErrors = []
     for refBond in ob.OBMolBondIter(refMol):
         refBeginIdx = refBond.GetBeginAtomIdx()
         refEndIdx = refBond.GetEndAtomIdx()
-        predBeginIdx = idxMap[refBeginIdx - 1] + 1
-        predEndIdx = idxMap[refEndIdx - 1] + 1
+        predBeginIdx = idxMap[refBeginIdx]
+        predEndIdx = idxMap[refEndIdx]
         predBond = predMol.GetBond(predBeginIdx, predEndIdx)
         bondLenErrors.append(
             abs(refBond.GetLength()-predBond.GetLength()))
@@ -99,7 +96,7 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
     # Calculate bond angle error
     bondAngleErrors = []
     for refBondAngle in ob.OBMolAngleIter(refMol):
-        predBondAngle = [idxMap[t] + 1 for t in refBondAngle]
+        predBondAngle = [idxMap[t+1] for t in refBondAngle]
         refBondAngle = [t + 1 for t in refBondAngle]
         refBondAngleDeg = refMol.GetAtom(refBondAngle[1]).GetAngle(
             refBondAngle[0], refBondAngle[2])
@@ -116,7 +113,7 @@ for ref, pred in zip(pybel.readfile("sdf", refFileName),
     # Calculate torsion angle error
     torsionErrors = []
     for refTorsion in ob.OBMolTorsionIter(refMol):
-        predTorsion = [idxMap[t] + 1 for t in refTorsion]
+        predTorsion = [idxMap[t+1] for t in refTorsion]
         refTorsion = [t + 1 for t in refTorsion]
         refTorsionAngleDeg = refMol.GetTorsion(
             refTorsion[0], refTorsion[1], refTorsion[2], refTorsion[3])
