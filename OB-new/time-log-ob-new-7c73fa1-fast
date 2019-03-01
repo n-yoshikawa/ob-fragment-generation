@@ -1,0 +1,239 @@
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (06J_3R92_A)
+  with Atom Ids as follows: 12
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (0NR_4E73_A)
+  with Atom Ids as follows: 26
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (0U8_4FFG_A)
+  with Atom Ids as follows: 2
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (1KG_4JCH_A)
+  with Atom Ids as follows: 2 21
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (1PL_2RDN_A)
+  with Atom Ids as follows: 4
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (1WP_4LC7_A)
+  with Atom Ids as follows: 0
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (27H_4MG7_A)
+  with Atom Ids as follows: 4
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (2X4_4PZW_A)
+  with Atom Ids as follows: 4 3
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (3EV_3A78_A)
+  with Atom Ids as follows: 13
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (3J9_4R5N_A)
+  with Atom Ids as follows: 7 8
+==============================
+*** Open Babel Error  in TetStereoToWedgeHash
+  Failed to set stereochemistry as unable to find an available bond
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 3 stereocenter(s) in this molecule (3T5_3TC5_A)
+  with Atom Ids as follows: 1 8 7
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (3UW_4RRN_A)
+  with Atom Ids as follows: 15 14
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (3UX_4RRO_A)
+  with Atom Ids as follows: 6 7
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (3VO_4WY1_A)
+  with Atom Ids as follows: 8
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (458_2B1V_A)
+  with Atom Ids as follows: 1
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (486_2W8Y_A)
+  with Atom Ids as follows: 17
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (4P0_4ZJS_B)
+  with Atom Ids as follows: 7
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (4Q1_4ZON_A)
+  with Atom Ids as follows: 18
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (4RX_4ZSQ_A)
+  with Atom Ids as follows: 2 3
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (4RY_4ZSR_A)
+  with Atom Ids as follows: 2
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (689_1ZKY_A)
+  with Atom Ids as follows: 2
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (840_3I8P_A)
+  with Atom Ids as follows: 11
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 3 stereocenter(s) in this molecule (AUB_5AM3_A)
+  with Atom Ids as follows: 22 24 20
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 4 stereocenter(s) in this molecule (CA4_2OZ7_A)
+  with Atom Ids as follows: 4 9 10 5
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 4 stereocenter(s) in this molecule (CBO_2BEL_A)
+  with Atom Ids as follows: 18 8 7 15
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 3 stereocenter(s) in this molecule (CBW_2W4Q_A)
+  with Atom Ids as follows: 9 4 19
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (CTC_3EGZ_B)
+  with Atom Ids as follows: 9 28
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 5 stereocenter(s) in this molecule (CV7_4UDD_A)
+  with Atom Ids as follows: 8 4 5 6 1
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (CY9_3EKS_A)
+  with Atom Ids as follows: 4 11
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 4 stereocenter(s) in this molecule (DEX_3MNO_A)
+  with Atom Ids as follows: 10 9 8 15
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (DSO_3P6N_A)
+  with Atom Ids as follows: 1
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (E04_1ZQ5_A)
+  with Atom Ids as follows: 9
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 4 stereocenter(s) in this molecule (ENM_2PNU_A)
+  with Atom Ids as follows: 12 15 27 26
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 3 stereocenter(s) in this molecule (EZT_2P15_A)
+  with Atom Ids as follows: 14 1 4
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 4 stereocenter(s) in this molecule (FP0_3FP0_A)
+  with Atom Ids as follows: 0 14 3 4
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (FUA_1Q23_A)
+  with Atom Ids as follows: 8 7
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (G3X_3I6M_A)
+  with Atom Ids as follows: 4
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (G6X_3I6Z_A)
+  with Atom Ids as follows: 4
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 4 stereocenter(s) in this molecule (HCY_2V95_A)
+  with Atom Ids as follows: 8 9 10 15
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (HY0_3W0O_A)
+  with Atom Ids as follows: 9 8
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (IZN_4ALX_A)
+  with Atom Ids as follows: 0
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (LAR_3SJH_A)
+  with Atom Ids as follows: 8
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (MUF_3BEJ_A)
+  with Atom Ids as follows: 13 9
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (N32_4JV3_A)
+  with Atom Ids as follows: 2 0
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (NYA_2ZMH_A)
+  with Atom Ids as follows: 0
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 4 stereocenter(s) in this molecule (P9C_3G11_A)
+  with Atom Ids as follows: 1 24 28 26
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (S1A_1W96_A)
+  with Atom Ids as follows: 3
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 3 stereocenter(s) in this molecule (SAW_3OL5_A)
+  with Atom Ids as follows: 5 1 3
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (SI5_4XXS_A)
+  with Atom Ids as follows: 8
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (SKD_2JKB_A)
+  with Atom Ids as follows: 2
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (SMS_1EOU_A)
+  with Atom Ids as follows: 6
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (TCI_3LS4_H)
+  with Atom Ids as follows: 9
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (TDC_4D7M_A)
+  with Atom Ids as follows: 16
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (TI4_5BRX_A)
+  with Atom Ids as follows: 7
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (TOR_3HKU_A)
+  with Atom Ids as follows: 5
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (VD4_2O4J_A)
+  with Atom Ids as follows: 9
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (VD5_2O4R_A)
+  with Atom Ids as follows: 14
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 1 stereocenter(s) in this molecule (ZYD_3P8X_A)
+  with Atom Ids as follows: 13
+
+real	6m51.942s
+user	6m50.727s
+sys	0m0.928s

@@ -175,6 +175,40 @@ TFD:		 0.29755567836935526
 Stereo correct:	 92.83201407211962
 ```
 
+### OB-new (New)(Full, fastest)
+```
+$ python stat-result.py eval-ob-new-7c73fa1.csv 
+RMSD:		 1.7472534035787315
+Bond error:	 0.04874244953799942
+Angle error:	 2.487054065741934
+Torsion error:	 44.14656531895596
+TFD:		 0.26548377011134
+Stereo correct:	 93.7994722955145
+```
+
+### OB-new (New)(Full, fast)
+```
+$ python stat-result.py eval-7c73fa1-fast.csv 
+RMSD:		 1.7035357156797966
+Bond error:	 0.04880397234219525
+Angle error:	 2.7549237686503845
+Torsion error:	 43.04960099653375
+TFD:		 0.24407059862995575
+Stereo correct:	 94.08531222515391
+```
+
+### OB-new (New)(Full, med)
+```
+$ python stat-result.py eval-ob-new-7c73fa1-med.csv 
+RMSD:		 1.5780111350238781
+Bond error:	 0.047667297385034835
+Angle error:	 2.4779011947305953
+Torsion error:	 42.28814134948697
+TFD:		 0.2231891355802418
+Stereo correct:	 94.1952506596306
+```
+
+
 ### Evaluation
 ```
 python evaluation.py ../OB-new/platinum-ob-new.sdf > eval-ob-new.csv 2>/dev/null
